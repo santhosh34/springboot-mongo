@@ -18,6 +18,5 @@ public class Party {
 
     private String description;
 
-
     private List<PartyId> partyId;
 }

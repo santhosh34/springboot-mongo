@@ -1,6 +1,10 @@
+server:
+    servlet:
+         context-path: "/benchmark"
+    port: 8085
+
 spring:
     data:
         mongodb:
             uri         : "mongodb://localhost:27017"
             database    : "mega"
-

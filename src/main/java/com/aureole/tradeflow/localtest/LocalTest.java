@@ -10,15 +10,13 @@ public class LocalTest {
 
     public static void main(String[] args) {
         LocalTest localTest = new LocalTest();
-        localTest.saveTrade();
-        localTest.saveTrade();
+       localTest.printBatchNumber(10,29);
+    }
 
-        localTest.saveTrade();
-        localTest.saveTrade(); localTest.saveTrade();
-        localTest.saveTrade();
-        localTest.saveTrade();
-        localTest.saveTrade();
+    public int printBatchNumber( int batchSize, int currentIndex){
 
+        int batchNumber= (currentIndex/ batchSize) + 1;
+        return batchNumber;
     }
 
     public void saveTrade() {

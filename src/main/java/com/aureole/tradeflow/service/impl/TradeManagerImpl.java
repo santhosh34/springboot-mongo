@@ -9,11 +9,15 @@ import com.aureole.tradeflow.model.trade.TradeType;
 import com.aureole.tradeflow.repository.TradeRepository;
 import com.aureole.tradeflow.service.ITradeManager;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.Instant;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TradeManagerImpl implements ITradeManager {
@@ -23,7 +27,7 @@ public class TradeManagerImpl implements ITradeManager {
 
 
     @Override
-    public void bulkInsert(TradeType tradeType) {
+    public void manyInsert(TradeType tradeType) {
         TradeEntity tradeEntity = TradeFactory.getTradeEntityType(tradeType);
         Duration duration= Duration.ZERO;
 
@@ -37,6 +41,39 @@ public class TradeManagerImpl implements ITradeManager {
         System.out.println("duration in seconds:"+duration.getSeconds());
         System.out.println("duration in millis:"+duration.toMillis());
         System.out.println("completed  times "+tradeType.getCount());
+    }
+
+    public Trade save(Trade trade) {
+        return tradeRepository.save(trade);
+    }
+
+    public List<Trade> findAll(){
+        return tradeRepository.findAll();
+    }
+
+    public Page<Trade> findAllWithPaginationAndSorting(Pageable pageable){
+        return tradeRepository.findAll(pageable);
+    }
+
+
+    public Optional<Trade> getADocumentById(String  id){
+        return tradeRepository.findById(id);
+    }
+
+
+    public long findCount(){
+        return tradeRepository.count();
+    }
+
+    @Override
+    public List<Trade> searchTradesWithGlobalKey(String globalKey) {
+        return tradeRepository.searchHereThereTradesWithGlobalKey(globalKey);
+    }
+
+
+    @Override
+    public List<Trade> searchHereThereByExternalRefNumber(Integer externalRefNumber) {
+        return tradeRepository.searchHereThereByExternalRefNumber(externalRefNumber);
     }
 
 
