@@ -18,7 +18,7 @@ import java.util.Optional;
 @RequestMapping("/health")
 public class HealthController {
 
-    @GetMapping(path = "/health")
+    @GetMapping()
     public ResponseEntity<Health> getHealth(){
         return  ResponseEntity.status(200).body(HealthEnum.HEALTHY.getHealthStatus());
     }
