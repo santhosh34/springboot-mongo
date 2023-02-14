@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 public class TradeType {
 
     private int count;
-    private String size;
+    private String payloadSize;
 
 }

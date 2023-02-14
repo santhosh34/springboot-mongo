@@ -5,7 +5,9 @@ import com.aureole.tradeflow.model.payloads.Trade;
 import com.aureole.tradeflow.model.trade.MiniTrade;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 public class LocalTest {
 
     public static void main(String[] args) {
@@ -21,11 +23,11 @@ public class LocalTest {
 
     public void saveTrade() {
         Trade trade = new MiniTrade().getTrade(1);
-        System.out.println(getTradeJson(trade));
+        log.trace(getTradeJson(trade));
     }
 
     public void testEnum() {
-        System.out.println(HealthEnum.HEALTHY.getHealthStatus());
+        log.trace(HealthEnum.HEALTHY.getHealthStatus());
     }
 
     public String  getTradeJson(Trade trade ) {
