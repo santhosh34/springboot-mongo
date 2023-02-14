@@ -8,24 +8,26 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-public interface ITradeManager  {
+public interface ITradeManager {
 
     Trade save(Trade trade);
 
     void manyInsert(TradeType tradeType);
 
-    List<Trade> findAll();
+    void findAll();
 
+    void findAllUsingCursor(int totalRecordCount, int batchSize);
 
     Page<Trade> findAllWithPaginationAndSorting(Pageable pageable);
 
-    Optional<Trade> getADocumentById(String  id);
+    Optional<Trade> getADocumentById(String id);
 
     long findCount();
 
-    List<Trade> searchTradesWithGlobalKey(String globalKey);
-
-    List<Trade>  searchHereThereByExternalRefNumber(Integer externalRefNumber);
+    List<Trade> searchByExternalRefNumber(Integer externalRefNumber);
 
 
+    List<Trade> searchByContractId(Integer contractId);
+
+    List<Trade> searchByGlobalKey(String globalKey);
 }

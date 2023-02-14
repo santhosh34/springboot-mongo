@@ -11,14 +11,19 @@ import java.util.List;
 @Repository
 public interface TradeRepository extends MongoRepository<Trade, String> {
 
-    public long count();
+    long count();
 
-    @Query(value= "{'externalRefNumber' : ?0}")
-    List<Trade> searchHereThereByExternalRefNumber(Integer externalRefNumber);
+    // Depth 1 record
+    @Query(value = "{'externalRefNumber' : ?0}")
+    List<Trade> searchByExternalRefNumber(Integer externalRefNumber);
 
+    // Depth 2 record
+    @Query(value = "{'contractDetails.contractId' : ?0}")
+    List<Trade> searchByContractId(Integer contractId);
 
-    @Query(value= "{'externalRefNumber.contractId' : ?0}")
-    List<Trade> searchHereThereTradesWithGlobalKey(String globalKey);
+    // Depth 4th Record
+    @Query(value = "{'contractDetails.description.meta.globalKey': ?0}")
+    List<Trade> searchByGlobalKey(String globalKey);
 
 
 }

@@ -6,7 +6,7 @@ public class TradeFactory {
 
     public static TradeEntity getTradeEntityType(TradeType tradeType){
 
-        switch(TradeSizeEnum.valueOf(tradeType.getSize())) {
+        switch(TradeSizeEnum.valueOf(tradeType.getPayloadSize())) {
             case SMALL:
                 return new SmallTrade();
             case MEDIUM:

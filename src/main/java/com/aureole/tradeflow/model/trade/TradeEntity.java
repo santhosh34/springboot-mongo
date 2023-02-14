@@ -83,7 +83,6 @@ public class TradeEntity {
         InputStream inputStream = classLoader.getResourceAsStream(getFileName());
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String descriptionAsString= (String) reader.lines().collect(Collectors.joining(System.lineSeparator()));
-//        JSONObject jsonpObject= new JSONObject(descriptionAsString);
         JsonNode jsonNode;
         try {
             jsonNode = new ObjectMapper().readTree(descriptionAsString);
